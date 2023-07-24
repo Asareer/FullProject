@@ -1,0 +1,143 @@
+﻿@using FullProject.Data;
+@using Microsoft.EntityFrameworkCore;
+@model Projects
+
+ @*
+     اضافة قاعدة البيانات إلى هنا حتى نستطيع جلب بيانات جدول الطلبات 
+ *@
+ @inject ApplicationDbContext db;
+ @{
+     var orders = db.Order.ToList();
+} 
+@{
+    ViewData["Title"] = "إضافة مشروع ";
+}
+
+<form method="post">
+    <div class="offcanvas-body flex-grow-0 mx-0">
+            <div class="row">
+               <div class="col-8">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Id_Orders">رقم الطلب</label>                   
+                        <input type="number"
+                               asp-for="Id_Orders"
+                               class="form-control"
+                               aria-label="" />
+                    <span class="alert-danger" asp-validation-for="Id_Orders"></span>
+                        
+                    </div>
+                </div>
+                @*
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Id_Projects">رقم المشروع</label>
+                        <input type="number"
+                           asp-for="Id_Projects"
+                               class="form-control"                            
+                               aria-label="John Doe" readonly />
+                    </div>
+                </div>*@
+                <div class="col-8">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Name_Project">اسم المشروع</label>
+                        <input type="text"
+                           asp-for="Name_Project"
+                               class="form-control"
+                               aria-label="" />
+                    <span class="alert-danger" asp-validation-for="Name_Project"></span>
+                    </div>
+                </div>
+            <div class="col-8">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Owner_Project">اسم مالك المشروع</label>
+                    <input type="text"
+                           asp-for="Owner_Project"
+                           class="form-control"
+                           aria-label="" />
+                    <span class="alert-danger" asp-validation-for="Owner_Project"></span>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Owner2_Project">اسم المفوض بالمعاملة</label>
+                    <input type="text"
+                           asp-for="Owner2_Project"
+                           class="form-control"
+                           aria-label="" />
+                    <span class="alert-danger" asp-validation-for="Owner2_Project"></span>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Num_Phone">رقم الهاتف</label>
+                    <input type="number"
+                           asp-for="Num_Phone"
+                           class="form-control"
+                           aria-label="" />
+                    <span class="alert-danger" asp-validation-for="Num_Phone"></span>
+                </div>
+            </div>
+                <div class="col-8">
+                    <div class="mb-3">
+                        <label asp-for="Date_Project" class="form-label">تاريخ تسجيل المشروع </label>
+                        <div class="input-group">
+                            <span id="basicDate2" class="input-group-text"><i class="bx bx-calendar"></i></span>
+                            <input type="date"
+                               asp-for="Date_Project"
+                                   class="form-control flatpickr-validation"
+                                   aria-label="MM/DD/YYYY" />
+                        <span class="alert-danger" asp-validation-for="Date_Project"></span>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-8">
+                <div class="mb-3">
+                    <label asp-for="Property_Project" class="form-label">وثيقة ملكية المشروع</label>
+                    <select asp-for="Property_Project" class="form-select" aria-label="نوع ملكية المشروع">
+                        <option value="1">عقد ملكية</option>
+                        <option value="2">إيجار  </option>
+                    </select>
+                    <span class ="alert-danger" asp-validation-for="Property_Project"></span>
+                </div>
+            </div>
+                <div class="col-8">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Type_Project">نوع المشروع</label>
+                        <input type="text"
+                           asp-for="Type_Project"
+                               class="form-control"
+                               aria-label="" />
+                    <span class="alert-danger" asp-validation-for="Type_Project"></span>
+                    </div>
+                </div>
+                   <div class="col-8">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Locate_Project">موقع المشروع</label>
+                        <input type="text"
+                           asp-for="Locate_Project"
+                               class="form-control"
+                               aria-label="" />
+                    <span class="alert-danger" asp-validation-for="Locate_Project"></span>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="area_Project">مساحة المشروع</label>
+                        <input type="text"
+                           asp-for="area_Project"
+                               class="form-control"
+                               aria-label="" />
+                    <span class="alert-danger" asp-validation-for="area_Project"></span>
+                    </div>
+                </div>
+          
+                <br><br><br>
+                <div class="d-grid gap-2 col-10 mx-auto">
+                    <button class="btn btn-primary " type="submit">إضافة</button>
+                <a asp-action="Index" asp-controller="ProjectOrder"  type="reset" class="btn btn-light ">
+                    إلـــغاء
+                </a>
+                </div>
+            </div>
+    </div>
+</form>

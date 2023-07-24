@@ -1,0 +1,214 @@
+﻿@using Microsoft.EntityFrameworkCore
+@using FullProject.Data
+@model Projects
+@inject ApplicationDbContext db;
+@{
+
+
+    var orders = db.Order.FirstOrDefault(e => e.Id_Orders == Model.Id_Orders);
+
+}
+
+
+@{
+    ViewData["Title"] = "بيانات المشاريع";
+}
+<div class="content-wrapper w-100 mx-max">
+    <!-- Content -->
+
+    <div class="card pb-5 m-3 me-5">
+
+
+        <div class=" table-responsive m-5 mb-2  mx-max text-start">
+            <table class="table card-table">
+                <thead>
+                    <tr>
+                        <th>بيانات المشروع</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+
+        <div class=" table-responsive m-5 mx-max text-start">
+            <table>
+
+                <tbody>
+
+                    <tr>
+                        <td class="p-2 px-5">
+                            رقم الطلب
+                        </td>
+                        <td class="p-2 px-5">
+                            رقم المشروع
+                        </td>
+                        <td class="p-2 px-5">
+                            أسم المشروع
+                        </td>
+                        <td class="p-2 px-5">
+                            تاريخ تسجيل المشروع
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="p-2 px-5">
+                            @orders.Num_Order
+                        </td>
+                        <td class="p-2 px-5">
+                            @Model.Id_Projects
+                        </td>
+                        <td class="p-2 px-5">
+                            @Model.Name_Project
+                        </td>
+                        <td class="p-2 px-5">
+                            @Model.Date_Project
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="p-2 px-5">
+                            نوع المشروع
+                        </td>
+                        <td class="p-2 px-5">
+                            موقع المشروع
+                        </td>
+                        <td class="p-2 px-5">
+                            مساحة المشروع
+                        </td>
+                        <td class="p-2 px-5">
+                            وثيقة ملكية المشروع
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 px-5">
+                            @Model.Type_Project
+                        </td>
+                        <td class="p-2 px-5">
+                            @Model.Locate_Project
+                        </td>
+                        <td class="p-2 px-5">
+                            @Model.area_Project
+                        </td>
+                        <td class="p-2 px-5">
+
+                            @(Model.Property_Project == "1" ? "ملك" : "إيجار")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 px-5">
+                            أسم مالك المشروع
+                        </td>
+                        <td class="p-2 px-5">
+                            أسم المفوض بالمعاملة
+                        </td>
+                        <td class="p-2 px-5">
+                            رقم الهاتف
+                        </td>
+                        <td class="p-2 px-5">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 px-5">
+                            @Model.Owner_Project
+                        </td>
+                        <td class="p-2 px-5">
+                            @Model.Owner2_Project
+                        </td>
+                        <td class="p-2 px-5">
+                            @Model.Num_Phone
+                        </td>
+                        <td class="p-2 px-5">
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+            <br />
+            <br />
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="p-2 px-5">
+                        </td>
+                        <td class="p-2 px-5">
+                        </td>
+                        <td class="p-2 px-5">
+                        </td>
+
+                        <td class="p-10 px-2">
+
+                            <a asp-controller="Actions" asp-action="Index" style="width:150px"
+                               class="dt-button add-new btn btn-primary">
+                                <i class="d-none d-lg-inline-block"></i> قـبــول
+                            </a>
+                        </td>
+
+                        <td class="p-10 px-2">
+
+                            <button style="width:150px"
+                                    class="dt-button add-new btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#addNewCCModal">
+                                <i class="d-none d-lg-inline-block">رفـــض</i>
+                            </button>
+
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+    </div>
+</div>
+<div class="modal fade" id="addNewCCModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body">
+
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                </div>
+                <form id="addNewCCForm" class="row g-3" onsubmit="return false">
+
+
+
+                    <div>
+                        <label for="exampleFormControlTextarea1" class="form-label"> سبب االرفض  </label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20"></textarea>
+                    </div>
+
+
+
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-primary me-1 me-sm-3">إرسال</button>
+                        <button type="reset"
+                                class="btn btn-label-secondary btn-reset"
+                                data-bs-dismiss="modal"
+                                aria-label="Close">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+

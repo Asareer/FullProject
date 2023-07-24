@@ -1,0 +1,113 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    ViewData["Title"] = "انواع البيانات";
+}
+
+<div>
+
+    <div class="offcanvas-header pb-0">
+
+
+
+
+        <div class="col-7">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">رقم الصنف</label>
+                <input type="number"
+                       class="form-control"
+                       aria-label="" />
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="offcanvas-header pb-0">
+        <div class="col-7">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">صنف/نوع المنتج</label>
+                <input type="text"
+                       class="form-control"
+                       aria-label="" />
+
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas-header pb-0">
+        <div class="col-7">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">العلامه التجاريه</label>
+                <input type="text"
+                       class="form-control"
+                       aria-label="" />
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="offcanvas-header pb-0">
+
+        <div class="col-2">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">الطاقه الانتاجيه</label>
+                <input type="text"
+                       class="form-control"
+                       id="add1_name"
+                       name="add1_name"
+                       aria-label="" />
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="offcanvas-header pb-0">
+        <label class="form-label" for="add1_name">تسجيل منتج</label>
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">رقم المنتج</label>
+                <input type="number"
+                       class="form-control"
+                       id="add1_name"
+                       name="add1_name"
+                       aria-label="" />
+            </div>
+
+        </div>
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">تاريخه</label>
+                <input type="text"
+                       class="form-control"
+                       id="add1_name"
+                       name="add1_name"
+                       aria-label="" />
+            </div>
+
+        </div>
+    </div>
+
+    <div class="offcanvas-header pb-0">
+
+        <div class="d-grid gap-2 col-13 mx-auto">
+            <a asp-controller="Process2" asp-action="Add3" class="btn btn-primary " type="submit">إضافه منتج جديد</a>
+            <a asp-controller="StartProcess" asp-action="StartProcess3" class="btn btn-primary " type="submit">حفظ</a>
+            <button class="btn btn-light" type="reset" data-bs-dismiss="offcanvas">الـغـاء</button>
+        </div>
+    </div>
+</div>

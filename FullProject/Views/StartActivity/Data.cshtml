@@ -1,0 +1,135 @@
+﻿@model TaxPayerData
+@{
+    ViewData["Title"] = "الزياره الميدانية";
+}
+
+<!-- Content -->
+
+<div class="card pb-5 m-3 me-5">
+
+    <div class=" table-responsive m-5 mb-2  mx-max text-start">
+        <table class="table card-table">
+        </table>
+    </div>
+    @if (TempData["Success"] != null)
+    {
+        <h3 style="color:brown">
+            @TempData["Success"]
+        </h3>
+    }
+    @if (TempData["Error2"] != null)
+    {
+        <h3 style="color:red">
+            @TempData["Error2"]
+        </h3>
+    }
+
+
+    <div class="card pb-5 m-3 me-5">
+
+
+            <div class=" table-responsive m-5 mb-2  mx-max text-start">
+                <table class="table card-table">
+                    <thead>
+                        <tr>
+                        <th>وقت الزيارة الميدانية</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+
+            <div class="offcanvas-body flex-grow-0 mx-0">
+                
+                <form method="post" asp-controller="StartActivity" asp-action="Data">
+
+
+                    <input  asp-for="Name_TaxPayers" value="@Model.Name_TaxPayers" readonly hidden/>
+                    <input  asp-for="Office" value="@Model.Office" readonly hidden/>
+                    <input  asp-for="Descrip_TaxPayers" value="@Model.Descrip_TaxPayers" readonly hidden/>
+
+
+                    <div asp-validation-summary=ModelOnly class="alert alert-danger"></div>
+                    <input asp-for="id_SProcess" value="@TempData["Process1"]" readonly hidden/>
+
+                <div class="row">
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Date_SProcess">تاريخ النزول</label>
+                            @if(TempData["found1"] is not null)
+                            {
+                                 <h1 class="form-control" style="background-color:#e9ecee;font-weight:bolder">@Model.Date_SProcess</h1>
+                            }
+                            else
+                            {
+                                <input class="form-control" asp-for="Date_SProcess" />
+                                 <span asp-validation-for="Date_SProcess" style="color:red"></span>
+                            }
+
+                           
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Day">اليوم</label>
+                            @if(TempData["found1"] is not null)
+                            {
+                               
+                                
+                                    DateTime day = Model.Day.Value;
+                                <h1 class="form-control" style="background-color:#e9ecee;font-weight:bolder">@DateOnly.FromDateTime(day) </h1>
+                            }
+                            else
+                            {
+                                <input  asp-for="Day" class="form-control"  />
+                                <span asp-validation-for="Day" style="color:red"></span>
+                            }
+                            
+
+                        </div>
+                    </div>
+
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Time">الوقت</label>
+                            @if (TempData["found1"] is not null)
+                            {
+                                 DateTime time = Model.Time.Value;
+                                <h1 class="form-control" style="background-color:#e9ecee;font-weight:bolder">@TimeOnly.FromDateTime(time) </h1>
+
+                            }
+                            else
+                            {
+                                <input class="form-control" asp-for="Time" />
+                                <span asp-validation-for="Time" style="color:red"></span>
+                            }
+                            
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <br><br><br>
+                <div class="d-grid gap-2 col-10 mx-auto">
+                    @if (TempData["found1"] is not null)
+                    {
+                        <a  class="btn btn-primary" asp-route-Id_SProcess="@TempData["Process1"]" asp-controller="StartActivity" asp-action="AddPurpose">التالي</a>
+                    }
+                    else
+                    {
+                        <button  class="btn btn-primary " type="submit">إضافة</button>
+                        <button  type="reset" class="btn btn-light ">
+                        إلـــغاء
+                        </button>
+                    }
+                    
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+                

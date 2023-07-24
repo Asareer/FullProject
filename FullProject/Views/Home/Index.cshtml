@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "الصفحة الرئيسية";
+}
+<!-- Content wrapper -->
+<div class="content-wrapper w-100 mx-max">
+    <!-- Content -->
+    <div class="card pb-5 m-3 me-5">
+        <div class=" table-responsive m-5 mb-2  mx-max text-start">
+            <table>
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        &nbsp;
+                        <td class="p-2 px-5">
+                            <h2>مكتب المواصفات والمقاييس وضبط الجودة</h2>
+                        </td>
+                        <td class="p-2 px-3">
+                        </td>
+                        <td class="p-2 px-3">
+                        </td>
+                        <td class="p-2 px-3">
+                        </td>
+                        <td class="p-2 px-3">
+                        </td>
+                          <td class="p-2 px-3">
+                        </td>
+                        <td class="p-2 px-3">
+                        </td>
+                        <td class="p-2 px-3">
+                            <div>
+                                <img class="card-img-top" src="../../assets/img/favicon/images.jpg" />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br /> <br />  <br />
+   
+        <div class=" m-5 mx-max text-start">
+            <table>
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-2 px-3">
+                        </td>
+                        <td class="p-2 px-3">
+                        </td>
+                        <td class="p-2 px-3">
+                        </td>
+                        <td class="p-2 px-3">
+                        </td>
+                        <td class="p-2 px-3">
+                        </td>
+                        <td class="p-2 px-3">
+                               <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+                                <li class="nav-item">
+                                    <a asp-controller="ProjectOrder" asp-action="Index" class="nav-link active">
+                                        <i class="bx bx-user"></i> طلبات المشاريع</>
+                                            </a>
+                                </li>
+                            </ul>    
+                        </td>
+                        <td class="p-2 px-3">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+                                <li class="nav-item">
+                                    <a asp-controller="StartProcess" asp-action="Index" class="nav-link active">
+                                        <i class="bx bx-user"></i> بدء العمليات
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="p-2 px-3">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+                                <li class="nav-item">
+                                    <a asp-controller="FinishProject" asp-action="Index" class="nav-link active">
+                                        <i class="bx bx-user"></i> المشاريع المنتهية
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>             
+                </tbody>
+            </table>
+        @if (TempData["Error"] != null)
+        {
+        <h3 style="color:brown">
+            @TempData["Error"]
+        </h3>
+        }
+        </div>
+    </div>
+</div>
+

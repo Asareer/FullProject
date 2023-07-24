@@ -1,0 +1,117 @@
+﻿@model TaxPayerData
+@{
+    ViewData["Title"] = "الزياره الميدانية";
+}
+
+<!-- Content -->
+
+<div class="card pb-5 m-3 me-5">
+    
+       <div class=" table-responsive m-5 mb-2  mx-max text-start">
+        <table class="table card-table">
+         
+
+        </table>
+    </div>
+    @if (TempData["Error1"] != null)
+    {
+        <h3 style="color:red">
+            @TempData["Error1"]
+        </h3>
+    }
+   
+
+        <div class="card pb-5 m-3 me-5">
+
+
+            <div class=" table-responsive m-5 mb-2  mx-max text-start">
+                <table class="table card-table">
+                    <thead>
+                        <tr>
+                        <th>المكلفون بالزياره الميدانية</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+            <div class="offcanvas-body flex-grow-0 mx-0">
+                <form method="post" asp-controller="StartActivity" asp-action="AddTaxpayer">
+
+                    <input asp-for="id_SProcess" value="@TempData["Process"]" readonly hidden/>
+
+                <div class="row">
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Office">المكتب</label>
+                            @if(TempData["found"] is not null)
+                            {
+                                <input class="form-control" asp-for="Office" value="@Model.Office" readonly/>
+                            }
+                            else
+                            {
+                                <input class="form-control" asp-for="Office" />
+                                 <span asp-validation-for="Office" style="color:red"></span>
+                            }
+
+                           
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Name_TaxPayers">اسم المكلف بالنزول</label>
+                            @if(TempData["found"] is not null)
+                            {
+                                <input  asp-for="Name_TaxPayers" class="form-control" value="@Model.Name_TaxPayers" readonly />
+                            }
+                            else
+                            {
+                                <input  asp-for="Name_TaxPayers" class="form-control"  />
+                                <span asp-validation-for="Name_TaxPayers" style="color:red"></span>
+                            }
+                            
+
+                        </div>
+                    </div>
+
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="Descrip_TaxPayers">صفته</label>
+                            @if (TempData["found"] is not null)
+                            {
+                                <input class="form-control" asp-for="Descrip_TaxPayers" value="@Model.Descrip_TaxPayers" readonly />
+                            }
+                            else
+                            {
+                                <input class="form-control" asp-for="Descrip_TaxPayers" />
+                                <span asp-validation-for="Descrip_TaxPayers" style="color:red"></span>
+                            }
+                            
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <br><br><br>
+                <div class="d-grid gap-2 col-10 mx-auto">
+                    @if (TempData["found"] is not null)
+                    {
+                        <a  class="btn btn-primary" asp-route-Id_SProcess="@TempData["Process"]" asp-controller="StartActivity" asp-action="Data">التالي</a>
+                    }
+                    else
+                    {
+                        <button  class="btn btn-primary " type="submit">إضافة</button>
+                        <button  type="reset" class="btn btn-light ">
+                        إلـــغاء
+                        </button>
+                    }
+                    
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+                

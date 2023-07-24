@@ -1,0 +1,325 @@
+﻿@using Microsoft.EntityFrameworkCore
+@using FullProject.Data
+@model IEnumerable<Projects>
+@inject ApplicationDbContext db;
+ @{
+    var orders = db.Project.Include(p=>p.Order).ToList();
+      
+} 
+
+@{
+    ViewData["Title"] = "طلبات المشاريع";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    @if (TempData["successData"] != null)
+    {
+        <h3 style="color:brown">
+            @TempData["successData"]
+        </h3>
+    }
+    @if (TempData["ErrorData"] != null)
+    {
+        <h3 style="color:red">
+            @TempData["ErrorData"]
+        </h3>
+    }
+    
+        
+
+        <!-- Top of card -->
+        <!-- أسم الصفحة -->
+       @* <div class="row p-4 ">
+            
+            <!-- offcanvasAddProjects الفلترة -->
+            <div class="col-md-0 " style="width:auto">
+                <div class="me-1 align-items-center justify-content-start ">
+                    <div class="dataTables_length" id="DataTables_Table_0_length ">
+                        <label>
+                            <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-select">
+
+                                <option value="25">  رقم المشروع </option>
+                                <option value="25">  رقم الطلب </option>
+                                <option value="10">تاريخ تسجيل المشروع  </option>
+
+
+
+
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>*@
+
+
+            <!-- البحث -->
+            @*<div class="col">
+                <div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center ">
+                    <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                        <label>
+                            <input type="search" class="form-control" placeholder="بحث.." aria-controls="DataTables_Table_0" style="width:500px">
+                        </label>
+                    </div>
+                </div>
+            </div>*@
+
+
+            @*<div class="col justify-content-end  mt-0 m-4 d-grid gap-2 ">
+                  <button class="dt-button add-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddProjects">
+
+                <span><i class="bx bx-plus me-0 me-lg-2"></i>
+                <span class="d-none d-lg-inline-block">  إضافة مشروع </span></span>
+                </button>
+
+                <a asp-controller="ProjectOrder" asp-action="AddFullProjectroject" class="dt-button add-new btn btn-primary" >
+                    <i class="bx bx-plus me-0 me-lg-2">
+                        &nbsp;
+                        إضافة مشروع
+                    </i> 
+                </a>
+            </div>
+
+        </div>*@
+        <!-- /Top of card -->
+        <!-- Table -->
+        <div class="card">
+            <div class=" justify-content-end me-5 mt-4  d-grid ">
+                @*  <button class="dt-button add-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddProjects">
+
+                <span><i class="bx bx-plus me-0 me-lg-2"></i>
+                <span class="d-none d-lg-inline-block">  إضافة مشروع </span></span>
+                </button>*@
+                
+                <a asp-controller="ProjectOrder" asp-action="AddFullProjectroject" class="dt-button add-new btn btn-primary" >
+                    <i class="bx bx-plus me-0 me-lg-2">
+                        &nbsp;
+                        إضافة مشروع
+                    </i> 
+                </a>
+            </div>
+        <div class="card-datatable table-responsive  ">
+            <table class="datatables-basic table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-start">رقم الطلب</th>
+                        <th>رقم المشروع</th>
+                        <th>اسم المشروع</th>
+                        <th>تاريخ تسجيل المشروع</th>
+                        <th> حالة الطلب</th>
+                  @*      <th class="col-1">تفاصيل</th>*@
+                        <th scope="col">تفاصيل</th>
+                        <th scope="col">أيوة</th>
+                        
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var project in Model)
+                    {
+                        <tr>
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-1"></i> <strong>
+                                    @project.Order.Num_Order
+                                </strong>
+                            </td>
+                          
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-1"></i>
+                                @project.Id_Projects
+                            </td>
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-1"></i>
+                                @project.Name_Project
+                            </td>
+                            <td class="p-2">
+                                @project.Date_Project
+                            </td>
+                            @if (project.Order != null)
+                            {
+                                @if (@project.Order.States == "0")
+                                {
+                                    <td class="p-2">
+                                        مرفوض
+                                    </td>
+                                }
+                                else if (@project.Order.States == "1")
+                                {
+                                     <td class="p-2">
+                                        مقبول
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="p-2">
+                                        @project.Order.States
+                                    </td>
+                                }
+                            }
+                            
+                            else{
+                                 <td class="p-2">
+                                    ----
+                                </td>
+                            }
+                              @*  <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" asp-controller="ProjectData" asp-action="Index"><i class="bx bx-envelope-open me-1"></i>عرض</a>
+                                        <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddProjects"><i class="bx bx-pencil  me-1"></i>تعديل</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> حذف</a>
+
+                                    </div>
+
+
+                                </div>*@
+                                @*<a asp-controller="" asp-action="" class="btn btn-success">
+                                    <i class="bi bi-plus"></i> &nbsp; Edit
+                                </a>
+                                &nbsp;
+                                <a asp-controller="" asp-action="" class="btn btn-danger">
+                                    <i class="bi bi-plus"></i> &nbsp; Delete
+                                </a>
+*@                              <td class="p-2">
+                                
+                                <a asp-controller="ProjectOrder" asp-action="ShowProject" asp-route-Id_Projects="@project.Id_Projects" class="btn btn-info">
+                                    <i class="bx bx-envelope-open me-1"></i> عرض
+                                </a>
+                                &nbsp;
+
+                                <a asp-controller="ProjectOrder" asp-action="EditFullProjectroject" asp-route-Id_Projects="@project.Id_Projects" class="btn btn-info">
+                                    <i class="bx bx-pencil  me-1"></i> تعديل
+                                </a>
+                                &nbsp;
+                                <a asp-controller="ProjectOrder" asp-action="DeleteFullProjectroject" asp-route-Id_Projects="@project.Id_Projects" class="btn btn-danger">
+                                    <i class="bx bx-trash me-1"></i> &nbsp; حذف
+                                </a>
+                                &nbsp;
+                                <a asp-controller="Actions" asp-action="Index" asp-route-Id_Projects="@project.Id_Projects" style="width:150px"
+                                class="dt-button add-new btn btn-primary">
+                                <i class="d-none d-lg-inline-block"></i> بدء الإجراءات
+                            </a>
+                            </td>
+                            
+                            <td class="p-2">
+                               <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="assets/img/avatars/N2.jpg" alt="" class="rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="assets/img/avatars/N2.jpg" alt class="rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-semibold d-block lh-1">Ahmed Madher</span>
+                            <small>Programmer</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">تسجيل الخروج</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                </ul>
+                            </td>
+                            
+<!-- User -->   
+                <!--/ User -->                        </tr>
+
+                 
+                      
+                           
+                    }
+
+
+                </tbody>
+
+            </table>
+            <!-- /Table -->
+        </div>
+        
+    </div>
+    </div>
+    <!-- / Content -->
+ 
+
+                <!-- buttom list -->
+                
+
+                @section Scripts{
+    <script>
+        
+        
+
+    $(function () {
+      var dataTablePermissions = $('.datatables-basic'),
+        dt_permission;
+
+      // Users List datatable
+      if (dataTablePermissions.length) {
+        dt_permission = dataTablePermissions.DataTable({
+          order: [[1, 'asc']],
+          scrollY: 400,
+          ordering: true,
+
+          lengthMenu: [5, 10, 25, 50, 100],
+          dom:
+            '<"row mx-1"' +
+        '<"col-sm-12 col-md-1" l>' +
+            '<"col-sm-12 col-md-11"<"dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-md-between justify-content-center flex-wrap me-1"<"me-3"f>B>>' +
+            '>t' +
+            '<"row mx-2"' +
+        '<"col-sm-12 col-md-6"i>' +
+            '<"col-sm-12 col-md-6"p>' +
+            '>',
+          language: {
+            sLengthMenu: '_MENU_',
+            search: '',
+            searchPlaceholder: 'بحث..',
+            paginate: {
+              first: 'الأول',
+              last: 'الأخير',
+              next: 'التالي',
+              previous: 'السابق'
+            }
+          },
+          // Buttons with Dropdown
+          buttons: [
+             
+            
+      ],
+    });
+  }
+
+  // Delete Record
+  $('.datatables-permissions tbody').on('click', '.delete-record', function () {
+    dt_permission.row($(this).parents('tr')).remove().draw();
+  });
+
+  // Filter form control to default size
+  // ? setTimeout used for multilingual table initialization
+  setTimeout(() => {
+    $('.dataTables_filter .form-control').removeClass('form-control-sm');
+    $('.dataTables_length .form-select').removeClass('form-select-sm');
+
+  }, 300);
+});
+</script>
+
+}

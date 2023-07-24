@@ -1,0 +1,205 @@
+﻿
+@model IEnumerable<Projects>
+
+@{
+    ViewData["Title"] = "طلبات المشاريع";
+}
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    @if (TempData["successData"] != null)
+    {
+        <h3 style="color:brown">
+            @TempData["successData"]
+        </h3>
+    }
+
+    <div class="card">
+
+
+        <!-- Top of card -->
+        <!-- أسم الصفحة -->
+        <div class="row p-4 ">
+
+            <!-- offcanvasAddProjects الفلترة -->
+            <div class="col-md-0 " style="width:auto">
+                <div class="me-1 align-items-center justify-content-start ">
+                    <div class="dataTables_length" id="DataTables_Table_0_length ">
+                        <label>
+                            <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-select">
+
+                                <option value="25">  رقم المشروع </option>
+                                <option value="25">  رقم الطلب </option>
+                                <option value="10">تاريخ تسجيل المشروع  </option>
+
+
+
+
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- البحث -->
+            <div class="col">
+                <div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center ">
+                    <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                        <label>
+                            <input type="search" class="form-control" placeholder="بحث.." aria-controls="DataTables_Table_0" style="width:500px">
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col justify-content-end  mt-0 m-4 d-grid gap-2 ">
+                @*  <button class="dt-button add-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddProjects">
+
+                <span><i class="bx bx-plus me-0 me-lg-2"></i>
+                <span class="d-none d-lg-inline-block">  إضافة مشروع </span></span>
+                </button>*@
+
+                <a asp-controller="ProjectOrder" asp-action="AddFullProjectroject" class="dt-button add-new btn btn-primary">
+                    <i class="bx bx-plus me-0 me-lg-2">
+                        &nbsp;
+                        إضافة مشروع
+                    </i>
+                </a>
+            </div>
+
+        </div>
+        <!-- /Top of card -->
+        <!-- Table -->
+
+        <div class=" table-responsive border-top mx-max text-center">
+            <table class="table card-table">
+                <thead>
+                    <tr>
+                        <th class="text-start">رقم الطلب</th>
+                        <th>رقم المشروع</th>
+                        <th>اسم المشروع</th>
+                        <th>تاريخ تسجيل المشروع</th>
+                        <th> حالة الطلب</th>
+                        @*      <th class="col-1">تفاصيل</th>*@
+                        <th scope="col">تفاصيل</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var project in Model)
+                    {
+                        <tr>
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-1"></i> <strong>
+                                    @project.Order.Num_Order
+                                </strong>
+                            </td>
+
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-1"></i>
+                                @project.Id_Projects
+                            </td>
+                            <td>
+                                <i class="fab fa-angular fa-lg text-danger me-1"></i>
+                                @project.Name_Project
+                            </td>
+                            <td class="p-2">
+                                @project.Date_Project
+                            </td>
+                            @if (project.Order != null)
+                            {
+                                @if (project.Order.States == "0")
+                                {
+                                    <td class="p-2">
+                                    مرفوض
+                                </td>
+                                }
+                                else
+                                {
+                                    <td class="p-2">
+                                    @project.Order.States
+                                </td>
+                                }
+                               
+                            }
+
+                            else
+                            {
+                                <td class="p-2">
+                                    ----
+                                </td>
+                            }
+                            @*  <div class="dropdown">
+                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                        <div class="dropdown-menu">
+                        <a class="dropdown-item" asp-controller="ProjectData" asp-action="Index"><i class="bx bx-envelope-open me-1"></i>عرض</a>
+                        <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddProjects"><i class="bx bx-pencil  me-1"></i>تعديل</a>
+                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> حذف</a>
+
+                        </div>
+
+
+                        </div>*@
+                            @*<a asp-controller="" asp-action="" class="btn btn-success">
+                        <i class="bi bi-plus"></i> &nbsp; Edit
+                        </a>
+                        &nbsp;
+                        <a asp-controller="" asp-action="" class="btn btn-danger">
+                        <i class="bi bi-plus"></i> &nbsp; Delete
+                        </a>
+                        *@
+                            <td>
+                                <a asp-controller="ProjectOrder" asp-action="ShowProject" asp-route-Id_Projects="@project.Id_Projects" class="btn btn-info">
+                                    <i class="bx bx-envelope-open me-1"></i> عرض
+                                </a>
+                             
+                            </td>
+
+                        </tr>
+
+
+
+
+                    }
+
+
+                </tbody>
+
+            </table>
+            <!-- /Table -->
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+<!-- buttom list -->
+<nav aria-label="Page navigation" class="m-4">
+    <ul class="pagination pagination-sm justify-content-end ">
+        <li class="page-item prev mr">
+            <a class="page-link" href="javascript:void(0);">
+                <i class="tf-icon bx bx-chevrons-left"></i>
+            </a>
+        </li>
+        <li class="page-item active">
+            <a class="page-link" href="javascript:void(0);">1</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0);">2</a>
+        </li>
+        <li class="page-item ">
+            <a class="page-link" href="javascript:void(0);">3</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0);">4</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="javascript:void(0);">5</a>
+        </li>
+        <li class="page-item next">
+            <a class="page-link" href="javascript:void(0);">
+                <i class="tf-icon bx bx-chevrons-right"></i>
+            </a>
+        </li>
+    </ul>
+</nav>

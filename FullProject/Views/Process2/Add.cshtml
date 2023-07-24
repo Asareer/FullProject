@@ -1,0 +1,230 @@
+﻿@model TaxPayers
+
+@{
+    ViewData["Title"] = " بدء عمليات تفتيش و تقييم المنشأت";
+}
+<div>
+    <form method="post"  asp-controller="Process2" asp-action="Add">
+
+        <input asp-for="Id_Processes2" value="@TempData["Id_Process2"]"  hidden />
+    <div class="offcanvas-header pb-0">
+
+        
+        @if (TempData["Tax_Payer_Error"] != null)
+        {
+            <h3 style="color:red">
+                @TempData["Tax_Payer_Error"]
+            </h3>
+        }
+        
+                    
+        
+
+        <div class="col-7">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">انتقلت انا</label>
+                    @if(TempData["found_Pocess2"] is not null)
+                    {
+                        <input  asp-for="Name_TaxPayers" value="@Model.Name_TaxPayers"
+                       class="form-control" readonly
+                        />
+                    }
+                    else
+                    {
+                        
+                    
+                    <input type="text" asp-for="Name_TaxPayers"
+                       class="form-control"
+                       aria-label="" />
+                    }
+            </div>
+            <span asp-validation-for="Name_TaxPayers" style="color:red;"></span>
+        </div>
+
+        <div class="col-3">
+            <div class="mb-3">
+
+                <label class="form-label" for="add1_number"> بحسب تكليف الهيئة رقم</label>
+                @if(TempData["found_Pocess2"] is not null)
+                    {
+                        <input  asp-for="Num_TaxPayers" value="@Model.Num_TaxPayers"
+                       class="form-control" readonly
+                        />
+                    }
+                    else
+                    { 
+                <input type="number" asp-for="Num_TaxPayers"
+                       class="form-control"
+                       id="add1_number"
+                       placeholder=" "
+                       name="add1_numberr"
+                       aria-label="" />
+                    }
+            </div>
+            <div asp-validation-summary="ModelOnly" style="color:red;"></div>
+        </div>
+    </div>
+
+    <div class="offcanvas-header pb-0">
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label for="strategicGoal_date" class="form-label">بتاريخ </label>
+                <div class="input-group">
+                    <span id="basicDate2" class="input-group-text"><i class="bx bx-calendar"></i></span>
+                    @if(TempData["found_Pocess2"] is not null)
+                    {
+                        <h1 class="form-control" style="background-color:#e9ecee;font-weight:bolder">@Model.Date_H</h1>
+                    }
+                    else{
+                    <input type="date" asp-for="Date_H"
+                           class="form-control flatpickr-validation"
+                           id="strategicGoal_date"
+                           
+                           aria-describedby="strategicGoal-date"
+                           placeholder="MM/DD/YYYY"
+                           aria-label="MM/DD/YYYY" />
+                    }
+                </div>
+                <span asp-validation-for="Date_H" style="color:red;"></span>
+
+            </div>
+        </div>
+
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">وذلك يوم</label>
+                @if(TempData["found_Pocess2"] is not null)
+                    {
+                        <input  asp-for="Day_TaxPayers" value="@Model.Day_TaxPayers" readonly
+                       class="form-control"
+                        />
+                    }
+                    else
+                    {
+                        
+                    
+                    <input type="text" asp-for="Day_TaxPayers"
+                       class="form-control"
+                       
+                        />
+                    }
+            </div>
+            <span asp-validation-for="Day_TaxPayers" style="color:red;"></span>
+        </div>
+
+
+
+        <div class="col-3">
+            <div class="mb-3">
+                <label class="form-label" for="add1_email">الموافق </label>
+                @if(TempData["found_Pocess2"] is not null)
+                    {
+                        <input  asp-for="Date_M" value="@Model.Date_M" readonly
+                       class="form-control"
+                        />
+                    }
+                    else
+                    {
+                        
+                    
+                    <input type="text" asp-for="Date_M"
+                       class="form-control"
+                       aria-label="" />
+                    }
+            </div>
+            <span asp-validation-for="Date_M" style="color:red;"></span>
+        </div>
+
+    </div>
+
+
+    <div class="offcanvas-header pb-0">
+
+        <div class="col-3">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">الساعه</label>
+                @if(TempData["found_Pocess2"] is not null)
+                    {
+                        DateTime time = Model.Time_TaxPayers;
+                                <h1 class="form-control" style="background-color:#e9ecee;font-weight:bolder">@TimeOnly.FromDateTime(time) </h1>
+
+                      
+                    }
+                    else
+                    {
+                        
+                    
+                    <input type="time" asp-for="Time_TaxPayers"
+                       class="form-control"
+                       id="add1_name"
+                       name="add1_name"
+                       aria-label="" />
+                    }
+            </div>
+            <span asp-validation-for="Time_TaxPayers" style="color:red;"></span>
+        </div>
+
+
+
+    </div>
+   
+
+    <br><br><br>
+    <br><br><br>
+
+    <table>
+        <tbody>
+            <tr>
+                <td class="p-2 px-5">
+                </td>
+                <td class="p-2 px-5">
+                </td>
+                <td class="p-2 px-5">
+                </td>
+
+                <td class="p-10 px-2">
+                        @if (TempData["found_Pocess2"] is not null)
+                        {
+                            <a asp-controller="Process2" asp-action="Add2" asp-route-Id_Process2="@Model.Id_Processes2" style="width:150px"
+                            class="dt-button add-new btn btn-primary">
+                                <i class="d-none d-lg-inline-block"></i> التالي
+                            </a>
+                        }
+                        else
+                        {
+                            <button type="submit"  style="width:150px"
+                            class="dt-button add-new btn btn-primary">
+                                <i class="d-none d-lg-inline-block"></i> التالي
+                            </button>
+                        }
+                    </td>
+
+                <td class="p-10 px-2">
+
+                    <button style="width:150px"
+                            class="dt-button add-new btn btn-light">
+                        <i class="d-none d-lg-inline-block">إلغاء</i>
+                    </button>
+
+                </td>
+            </tr>
+
+
+
+        </tbody>
+    </table>
+
+     </form>
+
+
+
+
+
+
+
+
+
+                        </div>
+                        

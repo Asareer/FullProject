@@ -1,0 +1,42 @@
+﻿@model StartActivity
+@{
+    ViewData["Title"] = "بدء النشاط";
+}
+
+
+  
+
+
+
+    <div class="offcanvas-body flex-grow-0 mx-0">
+        <label class="form-label">الغرض</label>
+        <textarea asp-for="Purpose" class="form-control" id="exampleFormControlTextarea1" rows="10" readonly></textarea>
+        
+
+
+    </div>
+
+<div class="offcanvas-body flex-grow-0 mx-0">
+    <label class="form-label">الوصف</label>
+    <textarea asp-for="Description" class="form-control" id="exampleFormControlTextarea1" rows="10" readonly></textarea>
+
+
+
+</div>
+
+<div class="offcanvas-body flex-grow-0 mx-0">
+    <label class="form-label">النتيجة</label>
+    <textarea asp-for="Result" class="form-control" id="exampleFormControlTextarea1" rows="10" readonly></textarea>
+
+
+
+</div>
+   
+<div class="d-grid gap-2 col-10 mx-auto">
+    <a asp-controller="StartProcess" asp-action="StartProcess2" asp-route-Id_SProcess="@Model.id_SProcess" class="btn btn-primary " type="submit">تم</a>
+    @*<button type="reset" class="btn btn-light ">
+        إلـــغاء
+    </button>*@
+</div>
+
+

@@ -1,0 +1,170 @@
+﻿
+@{
+
+    ViewData["Title"] = "البيانات العامه";
+}
+
+<div>
+
+    <div class="offcanvas-header pb-0">
+
+        @if (TempData["Tax_Payer_Success"] != null)
+        {
+            <h3 style="color:brown">
+                @TempData["Tax_Payer_Success"]
+            </h3>
+        }
+
+
+        <div class="col-7">
+            <div class="mb-3">
+                <label class="form-label">اسم المنشأة</label>
+                <input type="text"
+                       class="form-control"
+                   
+                       aria-label="" />
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="offcanvas-header pb-0">
+        <div class="col-7">
+            <div class="mb-3">
+                <label class="form-label" >اسم مالك المنشأة</label>
+                <input type="text"
+                       class="form-control"
+                     
+                       aria-label="" />
+
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas-header pb-0">
+        <div class="col-7">
+            <div class="mb-3">
+                <label class="form-label" >عنوان موقع المنشأة</label>
+                <input type="text"
+                       class="form-control"
+                     
+                       aria-label="" />
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="offcanvas-header pb-0">
+
+        <div class="col-2">
+            <div class="mb-3">
+                <label class="form-label" >ص.ب</label>
+                <input type="text"
+                       class="form-control"
+                   
+                       aria-label="" />
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label" >هاتف</label>
+                <input type="text"
+                       class="form-control"
+                 
+                       aria-label="" />
+            </div>
+
+        </div>
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label" >جوال</label>
+                <input type="text"
+                       class="form-control"
+                   
+                       aria-label="" />
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div class="offcanvas-header pb-0">
+
+        <div class="col-2">
+            <div class="mb-3">
+                <label class="form-label" >فاكس</label>
+                <input type="text"
+                       class="form-control"
+                   
+                       aria-label="" />
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label">تليكس</label>
+                <input type="text"
+                       class="form-control"
+                   
+                       aria-label="" />
+            </div>
+
+        </div>
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label" >البريد الالكتروني</label>
+                <input type="text"
+                       class="form-control"
+                    
+                       aria-label="" />
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+&nbsp;
+
+
+
+<a asp-controller="Process2" asp-action="Add3" class="btn btn-primary " type="submit">التالي</a>
+        &nbsp;
+<button class="btn btn-light" type="reset" data-bs-dismiss="offcanvas">الـغـاء</button>
+
+

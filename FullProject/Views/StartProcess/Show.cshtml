@@ -1,0 +1,104 @@
+﻿@model TaxPayerData
+@{
+    ViewData["Title"] = "الزياره الميدانية";
+}
+
+<!-- Content -->
+
+<div class="card pb-5 m-3 me-5">
+
+
+    <div class=" table-responsive m-5 mb-2  mx-max text-start">
+        <table class="table card-table">
+            <thead>
+                <tr>
+                    <th>المكلفون بالزياره الميدانية</th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+
+    <div class=" table-responsive m-5 mx-max text-start">
+        <table>
+
+            <tbody>
+
+                <tr>
+                 
+                    <td class="p-2 px-5">
+                        المكتب
+                    </td>
+                    <td class="p-2 px-5">
+                        أسم المكلف بالزياره
+                    </td>
+                    <td class="p-2 px-5">
+                        وصفه
+                    </td>
+                </tr>
+                <tr>
+                
+                    <td class="p-2 px-5">
+                        @Model.Office
+                    </td>
+                    <td class="p-2 px-5">
+                        @Model.Name_TaxPayers
+                    </td>
+                    <td class="p-2 px-5">
+                        @Model.Descrip_TaxPayers
+                    </td>
+                </tr>
+        </table>
+    </div>
+    <div class=" table-responsive m-5 mb-2  mx-max text-start">
+    <table class="table card-table">
+        <thead>
+            <tr>
+                <th>وقت الزياره الميدانيه</th>
+            </tr>
+        </thead>
+
+    </table>
+
+
+<div class=" table-responsive m-5 mx-max text-start">
+    <table>
+
+        <tbody>
+
+            <tr>
+
+                <td class="p-2 px-5">
+                    تاريخ النزول
+                </td>
+                <td class="p-2 px-5">
+                    اليوم
+                </td>
+                <td class="p-2 px-5">
+                    الوقت
+                </td>
+            </tr>
+            <tr>
+
+                <td class="p-2 px-5">
+                    @Model.Date_SProcess
+                </td>
+                <td class="p-2 px-5">
+                    @{DateTime day = Model.Day.Value;}
+                    @DateOnly.FromDateTime(day) 
+                </td>
+                <td class="p-2 px-5">
+                    @{DateTime time = Model.Time.Value;}
+                    @TimeOnly.FromDateTime(time) 
+                </td>
+            </tr>
+    </table>
+</div>
+</div>
+<div class="d-grid gap-2 col-10 mx-auto">
+        <a asp-controller="StartProcess" asp-action="ShowResult" asp-route-Id_SProcess="@Model.id_SProcess" class="btn btn-primary " type="submit">التالي</a>
+                <a type="reset" class="btn btn-light ">
+                    إلـــغاء
+                </a>
+            </div>
+</div>

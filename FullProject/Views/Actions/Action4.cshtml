@@ -1,0 +1,230 @@
+﻿@model Actions
+@{
+    ViewData["Title"] = "بدء الاجراءات";
+}
+<div class="content-wrapper w-100 mx-max">
+    <!-- Content -->
+
+    @if (TempData["paper_Success_Data"] != null)
+    {
+        <h3 style="color:brown">
+            @TempData["paper_Success_Data"]
+        </h3>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <h3 style="color:red">
+            @TempData["Error"]
+        </h3>
+    }                   
+    <div class="card pb-5 m-3 me-5">
+
+
+        <div class=" table-responsive m-5 mb-2  mx-max text-start">
+            <table class="table card-table">
+                <thead>
+                    <tr>
+                        <th>
+                            الاجراءات الاولية
+
+                        </th>
+
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+
+        <div class=" table-responsive m-5 mx-max text-start">
+            <table>
+
+                <tbody>
+
+                    <tr>
+                        <td class="p-2 px-5">
+                            وصول طلب المشروع
+                        </td>
+                        <td class="p-2 px-5">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+
+
+                                <li class="nav-item">
+
+                                    <button disabled class="btn btn-primary" style="width:150px"> تأكيد</button>
+                                </li>
+
+
+                            </ul>
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td class="p-2 px-5">
+                            الموافقة المبدئية
+                        </td>
+                        <td class="p-2 px-5">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+
+
+                                <li class="nav-item">
+
+                                    <button disabled class="btn btn-primary" style="width:150px"> تأكيد</button>
+                                </li>
+
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 px-5">
+                            استلام ورقة التعهد
+                        </td>
+                        <td class="p-2 px-5">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+
+                                <li class="nav-item">
+
+                                    <button disabled class="btn btn-primary" style="width:150px"> تأكيد</button>
+                                </li>
+
+
+                            </ul>
+                        </td>
+
+                    </tr>
+            </table>
+            <br /><br /><br /><br />
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="p-2 px-5">
+                        </td>
+                        <td class="p-2 px-5">
+                        </td>
+                        <td class="p-2 px-5">
+                        </td>
+
+                        <td class="p-10 px-2">
+
+                            <button disabled style="width:150px"
+                                    class="dt-button add-new btn btn-primary">
+                                <i class="d-none d-lg-inline-block"></i> الملاحظات
+                            </button>
+                        </td>
+                        
+                        <td class="p-10 px-2">
+
+                            <button style="width:150px" 
+                             class="dt-button add-new btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#addNewCCModal">
+                                <i class="d-none d-lg-inline-block">موافقة</i>
+                            </button>
+
+                        </td>
+
+                        <td class="p-10 px-2">
+
+                            <button style="width:150px" 
+                             class="dt-button add-new btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#reject">
+                                <i class="d-none d-lg-inline-block">رفض</i>
+                            </button>
+
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div class="modal fade" id="addNewCCModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body">
+
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                </div>
+                <form id="addNewCCForm" class="row g-3" asp-controller="Actions" asp-action="Action4">
+
+
+
+                    <div>
+                        <label for="exampleFormControlTextarea1" class="form-label"> الموافقة على الإجراءات الأولية </label>
+                        <textarea asp-for="Accepted_Note" class="form-control" id="exampleFormControlTextarea1" rows="10" required></textarea>
+                        <input asp-for="Rejected_Note" value=@null  hidden />
+                    </div>
+
+                    <input asp-for="Id_Actions" value=@Model.Id_Actions hidden />
+
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-primary me-1 me-sm-3">إرسال</button>
+                        <button type="reset"
+                                class="btn btn-label-secondary btn-reset"
+                                data-bs-dismiss="modal"
+                                aria-label="Close">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+<div class="modal fade" id="reject" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body">
+
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                </div>
+                <form id="reject" class="row g-3" asp-controller="Actions" asp-action="Action4">
+
+
+
+                    <div>
+                        <label for="exampleFormControlTextarea1" class="form-label"> سبب رفض الإجراءات الأولية </label>
+                        <textarea asp-for="Rejected_Note" class="form-control" id="exampleFormControlTextarea1" rows="10" required></textarea>
+                        <input asp-for="Accepted_Note" value=@null  hidden />
+                    </div>
+
+                    <input asp-for="Id_Actions" value=@Model.Id_Actions hidden />
+
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-primary me-1 me-sm-3">إرسال</button>
+                        <button type="reset"
+                                class="btn btn-label-secondary btn-reset"
+                                data-bs-dismiss="modal"
+                                aria-label="Close">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>

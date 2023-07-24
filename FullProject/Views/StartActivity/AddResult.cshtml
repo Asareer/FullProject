@@ -1,0 +1,120 @@
+﻿@model StartActivity
+@{
+    ViewData["Title"] = "بدء النشاط";
+}
+
+
+    <div class="offcanvas-body flex-grow-0 mx-0">
+
+        @if (TempData["successData3"] != null)
+        {
+            <h3 style="color:brown">
+                @TempData["successData3"]
+            </h3>
+        }
+        @if (TempData["Error5"] != null)
+        {
+            <h3 style="color:red">
+                @TempData["Error5"]
+            </h3>
+        }
+
+        <table>
+            <tbody>
+                <tr>
+                    <td class="p-2 px-5">
+                    </td>
+                    <td class="p-2 px-5">
+                    </td>
+                    <td class="p-2 px-2">
+                    </td>
+                    <td class="p-10 px-2">
+
+                        <a asp-controller="StartActivity" asp-action="AddPurpose" asp-route-Id_SProcess="@TempData["Process4"]" class="btn btn-primary" style="width:150px" type="submit">
+                            الغرض
+
+                        </a>
+                    </td>
+
+                    <td class="p-10 px-2">
+
+                        <a asp-controller="StartActivity" asp-action="AddDescription" asp-route-Id_SProcess="@TempData["Process4"]" class="btn btn-primary " style="width:150px" disabled type="submit">الوصف</a>
+
+                    </td>
+                    <td class="p-10 px-2">
+                        <a asp-controller="StartActivity" asp-action="AddResult" asp-route-Id_SProcess="@TempData["Process4"]" class="btn btn-primary " style="width:150px" disabled type="submit">النتيجه</a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+    <form method="post" asp-controller="StartActivity" asp-action="AddResult">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+    <div class="offcanvas-body flex-grow-0 mx-0">
+        <input asp-for="id_SProcess" value="@TempData["Process4"]" readonly hidden/>
+
+        @if(TempData["found4"] is not null)
+        {
+            <textarea asp-for="Result" value="@Model.Result"  class="form-control" id="exampleFormControlTextarea1" rows="10" readonly ></textarea>
+        }
+        else
+        {
+            <textarea asp-for="Result" class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+        }
+
+
+
+    </div>
+
+    <table>
+        <tbody>
+            <tr>
+                <td class="p-2 px-5">
+                </td>
+                <td class="p-2 px-5">
+                </td>
+                <td class="p-2 px-5">
+                </td>
+
+                <td class="p-10 px-2">
+
+                    @if(TempData["found4"] is not null){
+                        
+                        <a asp-controller="StartProcess" asp-action="StartProcess2"
+                        asp-route-Id_SProcess="@TempData["Process4"]" style="width:150px"
+                        class="dt-button add-new btn btn-primary" >
+                        <i class="d-none d-lg-inline-block"></i> التالي
+                        </a>
+                    }
+                    else
+                    {
+                        
+                        <button type="submit" style="width:150px" class="dt-button add-new btn btn-primary" >
+                        <i class="d-none d-lg-inline-block"></i> حفظ
+                        </button>
+                    }
+                </td>
+
+                <td class="p-10 px-2">
+
+                    <button style="width:150px"
+                            class="dt-button add-new btn btn-light">
+                        <i class="d-none d-lg-inline-block">إلغاء</i>
+                    </button>
+
+                </td>
+            </tr>
+
+
+
+        </tbody>
+    </table>
+
+
+</form>

@@ -1,0 +1,202 @@
+﻿@model Actions
+@{
+    ViewData["Title"] = "بدء الاجراءات";
+}
+<div class="content-wrapper w-100 mx-max"> 
+    <!-- Content -->
+    @if (TempData["successData"] != null)
+    {
+        <h3 style="color:brown">
+            @TempData["successData"]
+        </h3>
+    }
+    @if (TempData["Action2_Success_Data"] != null)
+    {
+        <h3 style="color:brown">
+            @TempData["Action2_Success_Data"]
+        </h3>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <h3 style="color:red">
+            @TempData["Error"]
+        </h3>
+    }
+    @if (TempData["Note_Success"] != null)
+    {
+        <h3 style="color:brown">
+            @TempData["Note_Success"]
+        </h3>
+    }
+
+    <div class="card pb-5 m-3 me-5">
+
+
+        <div class=" table-responsive m-5 mb-2  mx-max text-start">
+            <table class="table card-table">
+                <thead>
+                    <tr>
+                        <th>
+                            الاجراءات الاولية
+
+                        </th>
+
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+
+        <div class=" table-responsive m-5 mx-max text-start">
+            <table>
+
+                <tbody>
+
+                    <tr>
+                        <td class="p-2 px-5">
+                            وصول طلب المشروع
+                        </td>
+                        <td class="p-2 px-5">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+
+
+                                <li class="nav-item">
+
+                                    <button disabled class="btn btn-light" style="width:150px"> تأكيد</button>
+                                </li>
+
+
+                            </ul>
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td class="p-2 px-5">
+                            الموافقة المبدئية
+                        </td>
+                        <td class="p-2 px-5">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+
+                                @if (Model.Action2_Status == false)
+                                {
+                                    <li class="nav-item">
+
+                                    <a asp-controller="Actions" asp-action="Action3" asp-route-Id_Projects="@Model.Id_projects" class="btn btn-primary" style="width:150px"> تأكيد</a>
+                                </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+
+                                        <button disabled class="btn btn-light" style="width:150px"> تأكيد</button>                                    </li>
+                                    <li class="nav-item">
+
+                                        <a asp-controller="Actions" asp-action="Action3" asp-route-Id_Projects="@Model.Id_projects" class="btn btn-primary" style="width:150px"> الإنتقال للتالي</a>
+                                    </li>
+                                }
+                                
+
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 px-5">
+                            استلام ورقة التعهد
+                        </td>
+                        <td class="p-2 px-5">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+
+                                <li class="nav-item">
+
+                                    <button disabled class="btn btn-light" style="width:150px"> عــرض</button>
+                                </li>
+
+
+                            </ul>
+                        </td>
+
+                    </tr>
+            </table>
+            <br /><br /><br /><br />
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="p-2 px-5">
+                        </td>
+                        <td class="p-2 px-5">
+                        </td>
+                        <td class="p-2 px-5">
+                        </td>
+
+                        <td class="p-10 px-2">
+
+                            <button style="width:150px"
+                                    class="dt-button add-new btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#addNewCCModal">
+                                <i class="d-none d-lg-inline-block"></i> الملاحظات
+                            </button>
+                        </td>
+
+                        <td class="p-10 px-2">
+
+                            <button style="width:150px" disabled
+                                    class="dt-button add-new btn btn-primary">
+                                <i class="d-none d-lg-inline-block">موافقة</i>
+                            </button>
+
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div class="modal fade" id="addNewCCModal"  tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body">
+
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                </div>
+                <form id="addNewCCForm" asp-controller="Actions" asp-action="Action2" method="post" class="row g-3" >
+
+
+                    <input asp-for="Id_Actions" value="@Model.Id_Actions" hidden />
+                    <input asp-for="Id_projects" value="@Model.Id_projects" hidden />
+                    <div>
+                        <label for="exampleFormControlTextarea1" class="form-label"> ملاحظة الموافقة المبدئية </label>
+                        <textarea asp-for="Action2_Note" class="form-control" id="exampleFormControlTextarea1" rows="10" required></textarea>
+                    </div>
+
+
+
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-primary me-1 me-sm-3">إرسال</button>
+                        <button type="reset"
+                                class="btn btn-label-secondary btn-reset"
+                                data-bs-dismiss="modal"
+                                aria-label="Close">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>

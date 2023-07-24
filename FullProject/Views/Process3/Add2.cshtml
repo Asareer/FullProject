@@ -1,0 +1,156 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    ViewData["Title"] = "بيانات المنتج";
+}
+
+<div>
+
+    <div class="offcanvas-header pb-0">
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name"> الكمية المنتجه من الصنف</label>
+                <input type="text"
+                       class="form-control"
+                       aria-label="" />
+
+            </div>
+        </div>
+
+        <div class="col-7">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">  مطابقتها لمواصفات بطاقة البيان</label>
+                <input type="text"
+                       class="form-control"
+                       aria-label="" />
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="offcanvas-header pb-0">
+        <div class="col-7">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">  مطابقتها لمواصفة فترات الصلاحية</label>
+                <input type="text"
+                       class="form-control"
+                       aria-label="" />
+
+            </div>
+        </div>
+
+       
+       
+
+    </div>
+    <div class="offcanvas-header pb-0">
+        <div class="col-8">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name"> عدد وحدات العينة المسحوبة والغرض منها</label>
+                <input type="number"
+                       class="form-control"
+                       aria-label="" />
+
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas-header pb-0">
+    <div class="col-3">
+        <div class="mb-3">
+            <label class="form-label" for="add1_name"> الفحص الظاهري</label>
+            <br />
+            <label class="form-label" for="add1_name"> الرائحة</label>
+            <input type="text"
+                   class="form-control"
+                   aria-label="" />
+
+
+
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="mb-3">
+            <label class="form-label" for="add1_name">الشم</label>
+            <input type="number"
+                   class="form-control"
+                   aria-label="" />
+
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="mb-3">
+            <label class="form-label" for="add1_name">اللون</label>
+            <input type="number"
+                   class="form-control"
+                   aria-label="" />
+
+        </div>
+    </div>
+    </div>
+
+    <div class="offcanvas-header pb-0">
+
+
+        <div class="col-3">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">تقارير فحص سابقة</label>
+                <label class="form-label" for="add1_name">رقمه</label>
+                <input type="number"
+                       class="form-control"
+                       aria-label="" />
+
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">تاريخه</label>
+                <input type="number"
+                       class="form-control"
+                       aria-label="" />
+
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="mb-3">
+                <label class="form-label" for="add1_name">النتيجة</label>
+                <input type="number"
+                       class="form-control"
+                       aria-label="" />
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="offcanvas-header pb-0">
+
+    <div class="d-grid gap-2 col-13 mx-auto">
+        <a asp-controller="Process3" asp-action="Add" class="btn btn-primary " type="submit"> السابق</a>
+        <a asp-controller="Process3" asp-action="Report" class="btn btn-primary " type="submit">حفظ</a>
+        <a asp-controller="Process3" asp-action="Add2" class="btn btn-primary " type="submit">إضافه صنف</a>
+        <button class="btn btn-light" type="reset" data-bs-dismiss="offcanvas">الـغـاء</button>
+    </div>
+</div>
+

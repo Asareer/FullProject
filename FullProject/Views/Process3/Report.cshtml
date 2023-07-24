@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["Title"] = "تفتيش ومعاينة وتحريز العينات";
+}
+
+
+<!-- Content -->
+
+<div class="card pb-5 m-3 me-5">
+    <div class=" table-responsive m-5 mb-2  mx-max text-start">
+        <table class="table card-table">
+        </table>
+    </div>
+
+
+
+    <div class="card pb-5 m-3 me-5">
+
+
+        <div class=" table-responsive m-5 mb-2  mx-max text-start">
+            <table class="table card-table">
+                <thead>
+                    <tr>
+                        <th>  تقرير تفتيش ومعاينة وتحريزالعينات </th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+        <div class="offcanvas-body flex-grow-0 mx-0">
+            <div class="row">
+                <div class="col-8">
+                    <div class="mb-3">
+                        <label class="form-label" for="add1_name">وقد تبين من خلال التفتيش والمعاينه</label>
+                        <input type="text"
+                               for=""
+                               class="form-control"
+                               aria-label="" />
+                        <label class="form-label" for="add1_name">
+                            مسئولية نقل وإيصال العينات المحرزة الى ديوان عام الهيئة وسداد الرسوم خلال 24 ساعه من تاريخه وهذا تعهد والتزام بذلك ويتحمل (المستثمر-المنتج/ صاحب الشأن) المسئولية القانونية  في حال المخالفة(المستثمر-المنتج/ صاحب الشأن ) وتم استكمال إجراءات التحريز ويجب عدم تصريف  الكمية المحدده أعلاه أو انزالها الى الاسواق او نقلها او تعديلها او تبديلها او اتلافها لاي سبب كان إلا بعد ظهور نتائج الفحص وإشعاركم من قبل الهيئه
+                            وعلى
+                        </label>
+
+                    </div>
+                </div>
+
+               
+            </div>
+
+
+            <br><br><br>
+            <div class="d-grid gap-2 col-10 mx-auto">
+                <a asp-controller="Process3" asp-action="FinalReport" class="btn btn-primary " type="submit">تم</a>
+                <a type="reset" class="btn btn-light ">
+                    إلـــغاء
+                </a>
+            </div>

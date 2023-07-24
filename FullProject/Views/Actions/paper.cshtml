@@ -1,0 +1,200 @@
+﻿@model Actions
+
+@{
+    ViewData["Title"] = "التعهد";
+}
+<div class="content-wrapper w-100 mx-max">
+    <!-- Content -->
+
+    <div class="card pb-5 m-3 me-5">
+
+
+        <div class=" table-responsive m-5 mb-2  mx-max text-start">
+            <table class="table card-table">
+                <thead>
+                    <tr>
+                        <th>بيانات المشروع</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+
+        <div class=" table-responsive m-5 mx-max text-start">
+            <table>
+
+                <tbody>
+
+                    <tr>
+                        <td class="p-2 px-5">
+                            رقم الطلب
+                        </td>
+                        <td class="p-2 px-5">
+                            رقم المشروع
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="p-2 px-5">
+                            @TempData["Order_Id"]
+                        </td>
+                        <td class="p-2 px-5">
+                            @Model.Id_projects
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+         
+
+            <table>
+                <tbody>
+
+                    <tr>
+                        <td class="p-2 px-5">
+                            أسم المالك
+                        </td>
+                        <td class="p-2 px-5">
+                            تاريخ تسجيل المشروع
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="p-2 px-5">
+                            @Model.Project.Owner_Project
+                        </td>
+                        <td class="p-2 px-5">
+                            @Model.Project.Date_Project.Day/@Model.Project.Date_Project.Month/@Model.Project.Date_Project.Year
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+
+            <br /> <br /> <br /> <br /> <br />
+
+          
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="p-2 px-5">
+                        </td>
+                        <td class="p-2 px-5">
+                        </td>
+                        <td class="p-2 px-5">
+                        </td>
+
+                        <td class="p-2 px-">
+
+                            @*<a asp-controller="Actions" asp-action="Action4" style="width:150px"
+                               class="dt-button add-new btn btn-primary">
+                                <i class="d-none d-lg-inline-block"></i> إرفاق الملف
+                            </a>*@
+                        </td>
+
+                        @if (Model.Action3_Paper == null)
+                        {
+
+
+                            <td class="p-2 px-">
+
+                                @using (Html.BeginForm("paper", "Actions", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="col-md-12 mb-3">
+                                        <div class="col">
+                                            <label class="form-label ">ورقة التعهد</label>
+                                            <label class="form-control form-control-ms  ">
+                                                إختيار  ورقة التعهد   
+                                                <input  type="file"  class="btn btn-sm btn-primary "  
+                                asp-for="Action3_Paper"  title="اختيار" required
+                                oninput="pic.src=window.URL.createObjectURL(this.files[0])"/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <input asp-for="Id_Actions" value="@Model.Id_Actions" hidden />
+
+                                    <button type="submit" style="width:150px"
+                               class="dt-button add-new btn btn-primary">
+                                        <i class="d-none d-lg-inline-block"></i> إرفاق الملف
+                                    </button>
+                                }
+                            </td>
+                            <td>
+                                <div id="frames" class="col"><img id="pic"  width="300px" height="300px" /></div>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="p-2 px-">
+                                <a asp-controller="Actions" asp-action="Action4" asp-route-id="@Model.Id_Actions" style="width:150px"
+                               class="dt-button add-new btn btn-primary">
+                                <i class="d-none d-lg-inline-block"></i> الإنتقال للتالي
+                            </a>
+                            </td>
+
+                            <td>
+                                <div id="frames" class="col"><img src="@Model.Action3_Paper" id="pic"  width="300px" height="300px" /></div>
+                            </td>
+                        }
+
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+    </div>
+</div>
+<div class="modal fade" id="addNewCCModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">
+        <div class="modal-content p-3 p-md-5">
+            <div class="modal-body">
+
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="text-center mb-4">
+                </div>
+                <form id="addNewCCForm" class="row g-3" onsubmit="return false">
+
+
+
+                    <div>
+                        <label for="exampleFormControlTextarea1" class="form-label"> سبب االرفض  </label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="20"></textarea>
+                    </div>
+
+
+
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-primary me-1 me-sm-3">إرسال</button>
+                        <button type="reset"
+                                class="btn btn-label-secondary btn-reset"
+                                data-bs-dismiss="modal"
+                                aria-label="Close">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+

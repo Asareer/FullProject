@@ -1,0 +1,72 @@
+﻿@model IEnumerable<IdentityRole>
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h1>Roles</h1>
+
+<partial name="_RoleForm" model="new RoleFormViewModel()" />
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr class="bg-primary text-white">
+            <th>Id</th>
+            <th>Role Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.Id</td>
+                <td>@role.Name</td>
+                <td>
+                <a class="btn btn-primary" asp-action="ManagePermissions" asp-route-roleId="@role.Id">Manage Permissions</a>
+                <a href="javascript:;" class="btn btn-danger js-delete-role" data-id="@role.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $('.js-delete-role').on('click', function(){
+                var btn = $(this);
+
+               bootbox.confirm({
+                    message:"Are you Sure You Need to Delete This User?",
+                    buttons:{
+                        confirm:{
+                            label:'Yes',
+                            className:'btn-danger'},
+                      cancel:{
+                            label:'No',
+                            className:'btn-secondary'}
+                    },
+                    callback: function (result) {
+                        if (result)
+                        {
+                            $.ajax({
+                                url:'/api/Roles/?roleId='+ btn.data('id'),
+                                method:'DELETE',
+                                success:function(){
+                                    btn.parents('tr').fadeOut();
+                                    $('#alert').removeClass('d-none');
+                                    setTimeout(function(){ $('#alert').addClass('d-none');},3000);
+                                    //alert('User Deleted');
+                                },
+                                error:function(){
+                                    alert('Something went Wrong');
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        });
+        </script>
+}

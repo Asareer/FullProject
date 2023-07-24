@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "بدء العمليات";
+}
+<div class="content-wrapper w-100 mx-max">
+    <!-- Content -->
+
+    <div class="card pb-5 m-3 me-5">
+
+
+        <div class=" table-responsive m-5 mb-2  mx-max text-start">
+            <table class="table card-table">
+                <thead>
+                    <tr>
+
+
+                        <th>
+                            بدء العمليات
+
+                        </th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+
+        <div class=" table-responsive m-5 mx-max text-start">
+            <table>
+
+                <tbody>
+
+
+                    <tr>
+                        <td class="p-2 px-5">
+                            بدء النشاط
+                        </td>
+                        <td class="p-2 px-5">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+
+
+                                <li class="nav-item">
+
+                                    <a asp-controller ="StartProcess" asp-action="Show" class="btn btn-primary" style="width:150px"> عرض</a>
+                                </li>
+                                &nbsp;
+                                <li class="nav-item">
+
+                                    <button disabled class="btn btn-light" style="width:150px"> تأكيد</button>
+                                </li>
+                            </ul>
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td class="p-2 px-5">
+                            تفتيش وتقييم المنشأت
+                        </td>
+                        <td class="p-2 px-5">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+
+
+                                <li class="nav-item">
+
+                                    <a asp-controller ="StartProcess" asp-action="Show" class="btn btn-primary" style="width:150px"> عرض</a>
+                                </li>
+                                &nbsp;
+                                <li class="nav-item">
+
+                                    <button disabled class="btn btn-light" style="width:150px"> تأكيد</button>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 px-5">
+                            تفتيش ومعاينة (منتجات المنشأة )وتحريز  العينات
+                        </td>
+                        <td class="p-2 px-5">
+                            <ul class="nav nav-pills flex-column flex-sm-row mb-6">
+
+
+                                <li class="nav-item">
+
+                                    <a asp-controller="Process3" asp-action="Add" class="btn btn-primary" style="width:150px"> تعبئة</a>
+                                </li>
+                                &nbsp;
+                                <li class="nav-item">
+
+                                    <button  class="btn btn-primary" style="width:150px"> تأكيد</button>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>

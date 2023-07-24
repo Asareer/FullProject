@@ -1,0 +1,96 @@
+﻿@model Projects
+@{
+    ViewData["Title"] = " حـذف بيانات المشروع ";
+}
+
+
+<form method="post" asp-action="DeleteFullProjectroject">
+    <input asp-for="Id_Projects"  hidden/>
+    <div class="offcanvas-body flex-grow-0 mx-0">
+        <div class="row pb-2">
+            <div class="col-4">
+                @*  <div class="mb-3">
+                <label asp-for="Id_Projects"> رقم المشروع</label>
+                <input asp-for="Id_Projects" class="form-control" />
+                </div>*@
+                <div class="mb-3">
+                    <label asp-for="Name_Project"> اسم المشروع</label>
+                    <input asp-for="Name_Project" disabled class="form-control" />
+              
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Owner_Project"> اسم مالك المشروع</label>
+                    <input asp-for="Owner_Project" disabled class="form-control" />
+               
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Owner2_Project"> اسم المفوض المشروع</label>
+                    <input asp-for="Owner2_Project" disabled class="form-control" />
+                  
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Num_Phone"> رقم الهاتف</label>
+                    <input asp-for="Num_Phone" disabled class="form-control" />
+          
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Property_Project">وثيقة ملكية المشروع</label>
+                    <select asp-for="Property_Project" disabled class="form-select">
+
+                        <option value="1">عقد ملكية</option>
+                        <option value="2">إيجار  </option>
+                    </select>
+                   
+
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Locate_Project"> موقع المشروع</label>
+                    <input asp-for="Locate_Project" disabled class="form-control" />
+               
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Type_Project"> نوع المشروع</label>
+                    <input asp-for="Type_Project" disabled class="form-control" />
+              
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="area_Project"> مساحة المشروع</label>
+                    <input asp-for="area_Project" disabled class="form-control" />
+               
+                </div>
+
+                <div>
+                    <label asp-for="Date_Project" class="form-label">تاريخ تسجيل المشروع </label>
+                    <input type="date" asp-for="Name_Project" disabled class="form-control" />
+                  
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+        <button class="btn btn-primary" style="width:150px" type="submit">حــذف </button>
+
+
+        <a asp-action="Index" asp-controller="ProjectOrder" style="width:150px" type="reset" class="btn btn-light ">
+            إلـــغاء
+        </a>
+        @*    <button class="btn btn-light" type="reset" data-bs-dismiss="offcanvas">الـغـاء</button>*@
+
+    </div>
+
+
+</form>
+
+
